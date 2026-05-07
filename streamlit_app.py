@@ -42,11 +42,14 @@ if prompt := st.chat_input("Escribe tu consulta técnica aquí..."):
     # Generar respuesta de la IA
     with st.chat_message("assistant"):
         try:
-            response = client.chat.completions.create(
-                model=MODELO,
-                messages=st.session_state.messages,
-            )
-            texto_ia = response.choices[0].message.content
+        # Generar respuesta de la IA
+        response = client.chat.completions.create(
+            model=MODELO,
+            messages=st.session_state.messages,
+        )
+        # Cambia la línea de texto_ia por esta:
+        texto_ia = response.choices[0].message.content
+
             st.markdown(texto_ia)
             st.session_state.messages.append({"role": "assistant", "content": texto_ia})
         except Exception as e:
